@@ -1,0 +1,26 @@
+{% extends "Products/base.html" %}
+{% block content%}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+      <div class="row ml-5 mt-3">
+        {% for order in Orders %}
+        <div class="col-sm-12 col-md-6 col-xl-4 col-lg-4 mt-4">
+          <div class="card" style="width: 20rem;">
+            <img src="{{ order.Image.url }}" class="card-img-top w-100" alt="{{ order.Name }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ order.Name }}</h5>
+              <p class="card-text"><b>Price:</b>   {{ order.Price }}</p>
+              <p class="card-text"><b>Grand Total:</b>   {{ order.GrandTotal }}</p>
+            </div>
+            <div class="card-footer text-center">
+                <a href="{% url 'product-detail' order.ProductId.id %}" class="btn btn-primary">View </a>
+            </div>
+          </div>
+        </div> 
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

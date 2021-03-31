@@ -1,0 +1,41 @@
+{% extends "Products/base.html" %}
+{% load mathfilters %}
+{% block content%}
+<div>
+    {% if items|length > 0 %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="container p-3">
+                {% for item in items %}
+                <div class="row">
+                    <div class="col-md-6 pt-5 d-flex">
+                        <div class="ml-3">
+                            <img src="{{ item.Image }}" style="height: 120px; width: 200px"></img>
+                        </div>
+                        <div class="ml-3">
+                            <p><b>Name: {{ item.Name }}</b>
+                                <a class="fa fa-info-circle ml-5" style="color: green;" href="{% url 'product-detail' item.ProductId %}"></a>
+                                <a class="mr-auto fa fa-minus-circle ml-2" style="color: red;" href="{% url 'delete-item' forloop.counter  %}" ></a>
+                            </p>
+                            <p><b>Quantity : {{ item.Quantity}} </b> </p>
+                            <p><b>Price: {{ item.Price }}</b> </p>
+                        </div>
+                    </div>
+                </div>
+                <div class=" ml-3 mt-3">
+                    <p><b>Total:</b><b> Rs. </b> {{ item.Quantity|mul:item.Price }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="container">
+                <a class="ml-3 btn btn-primary" href="{% url 'products' %}">Continue Shopping</a>
+                <button type="submit" class="ml-5 btn btn-secondary text-white">Order Now</button>
+            </div>
+        </form>
+    {% else %}
+        <div class="alert container p-3 mt-3 alert-secondary" role="alert">
+            No items in cart!
+        </div>
+    {% endif %}
+</div>
+{% endblock content %}

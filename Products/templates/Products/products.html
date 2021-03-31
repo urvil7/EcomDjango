@@ -1,0 +1,27 @@
+{% extends "Products/base.html" %}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+            <div class="row ml-5 mt-3">
+                {% for product in products %}
+                <div class="col-sm-12 col-md-6 col-xl-4 col-lg-4 mt-4">
+                    <div class="card" style="width: 18rem;border-radius: 16px;">
+                        <img src="{{ product.Image.url }}" class="card-img-top" alt="{{ product.Name }}"
+                            style="border-radius: 15px;box-shadow: 5px 9px 5px grey;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.Name }}</h5>
+                            <p class="card-text"><b>Price :</b> {{ product.Price }}</p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="{% url 'product-detail' product.id %}" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% include 'Products/pagination.html' %}
+</div>
+{% endblock content %}

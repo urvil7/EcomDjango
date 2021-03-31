@@ -1,0 +1,31 @@
+{% extends "Products/base.html" %}
+{% block content%}
+<!-- <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item "><a href="/" class="text-muted">Shopping World</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Category</li>
+  </ol>
+</nav> -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+      <div class="row ml-5 mt-3">
+        {% for cat in categories %}
+        <div class="col-sm-12 col-md-6 col-xl-4 col-lg-4 mt-4">
+          <div class="card catCard" style="width: 20rem;border-radius: 16px;">
+            <img src="{{ cat.Image.url }}" class="card-img-top w-100" alt="{{ cat.Name }}" style="border-radius: 15px;box-shadow: 5px 9px 5px grey;">
+            <div class="card-body" >
+              <h5 class="card-title">{{ cat.Name }}</h5>
+              <p class="card-text">{{ cat.Description }}</p>
+            </div>
+            <div class="card-footer text-center">
+              <a href="{% url 'category-by-products' cat.id %}" class="btn btn-primary">View More</a>
+            </div>
+          </div>
+        </div> 
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

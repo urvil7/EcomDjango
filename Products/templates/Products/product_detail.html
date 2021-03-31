@@ -1,0 +1,60 @@
+{% extends "Products/base.html" %}
+{% block content%}
+    <!-- {% if some_flag %}
+    <script>alert("Quantity must be greater than 0.")</script>
+    {% endif %} -->
+    <div class="container-fluid pt-4">
+        <div class="row">
+            <div class="card-deck p-5 col-md-4" style="margin-left: 19%;">
+                <div class="card">
+                    <img src={{book.Image.url}} class="card-img-top w-100 rounded" alt="..."
+                        style="height: 500px;width: 400px;border-radius: 15px;box-shadow: 10px 10px 5px grey;">
+                </div>
+            </div>
+            <div class="card-deck p-5 col-md-6">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="card-body col-md-12 col-sm-12 col-12 w-100"
+                            style="background-color: #e2e2e2;border-radius: 15px;box-shadow: 10px 10px 5px grey;height: 500px;">
+                            <b>Name:</b>
+                            <!-- <input id="Name" type="text" name="Name" value="{{ book.Name }}"><br> -->
+                            <input class="ml-3" style="background-color: #e2e2e2;border: 0px;font-size: large;" name="Name"
+                                value="{{ book.Name }}" /> <br />
+
+                            <b>Price:</b>
+                            <input name="Price" class="ml-4 mt-3"
+                                style="background-color: #e2e2e2;border: 0px;font-size: large;"
+                                value="{{ book.Price }}" /><br />
+
+                            <b>Color:</b>
+                            <select class="custom-select ml-4 mt-3" style="width: 210px;" name="Color" required>
+                                <option value="" disabled selected hidden>Select a Color :</option>
+                                <option value="Red">Red</option>
+                                <option value="Blue">Blue</option>
+                                <option value="Green">Green</option>
+                            </select>
+                            <br />
+
+                            <b>Size:</b>
+                            <input type="radio" class="mt-4" value="Small" name="Size" style="margin-left: 9.3%;" required><span
+                                class="ml-1">Small</span><br />
+                            <input type="radio" value="Medium" name="Size" style="margin-left: 19.5%;"><span
+                                class="ml-1">Medium</span><br />
+                            <input type="radio" value="Large" name="Size" style="margin-left: 19.5%;"><span
+                                class="ml-1">Large</span><br />
+                            <br />
+
+                            <b>Quantity:</b>
+                            &nbsp;<input type="number" class="mt-1 " required style="width: 210px;" name="Quantity"
+                                placeholder="Select a Quantity:">
+                            <br />
+                            <button type="submit" name="cart" class="btn mt-5 btn-md btn-primary text-white ml-4" style="width: 150px;">Add to Cart</button>
+                            <button type="submit" name="Wishlist" class="btn mt-5 btn-md btn-secondary ml-5 text-white" style="width: 150px;">Add to Wishlist</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

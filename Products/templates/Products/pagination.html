@@ -1,0 +1,25 @@
+<div class="pagination mt-4">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info mb-4" href="?page=1">&laquo; First</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% else %}
+            <li class="disabled btn btn-outline-info mb-4"><span>Previous</span></li>
+        {% endif %}
+
+        {% for i in paginator.page_range %}
+            {% if page_obj.number == i %}
+                <span class="btn btn-info mb-4">{{ i }} <span class="sr-only">(current)</span></span>
+            {% else %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ i }}">{{ i }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+        {% else %}
+            <li class="disabled btn btn-outline-info mb-4"><span>Next </span></li>
+        {% endif %}
+    </span>
+</div>

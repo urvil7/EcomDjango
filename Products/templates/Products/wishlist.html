@@ -1,0 +1,33 @@
+{% extends "Products/base.html" %}
+{% block content%}
+<div class="container">
+  <div class="row">
+    {% if wishlist|length > 0 %}
+    <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12">
+      <div class="row ml-5 mt-3">
+        {% for wish in wishlist %}
+        <div class="col-sm-12 col-md-6 col-xl-4 col-lg-4 mt-4">
+          <div class="card" style="width: 20rem;">
+            <img src="{{ wish.Image }}" class="card-img-top w-100" alt="{{ wish.Name }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ wish.Name }}</h5>
+              <p class="card-text"><b>Price:</b> {{ wish.Price }}</p>
+            </div>
+            <div class="card-footer text-center">
+              <a href="{% url 'product-detail' wish.ProductId %}" class="btn btn-primary">View </a>
+              <a href="{% url 'delete-wishlist' forloop.counter %}" class="btn btn-danger ml-5" name="wishlist">Remove
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% else %}
+    <div class="alert container p-3 mt-3 alert-secondary" role="alert">
+      No items in Wishlist!
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}
